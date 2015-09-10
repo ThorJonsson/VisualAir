@@ -7,25 +7,8 @@ from matplotlib.colors import cnames
 import pdb
 import matplotlib.dates as mdates
 import va_read_data as parse
-import csv
-
-
-with open('va_air_data.csv', 'rb') as csvfile:
-	reader = csv.reader(csvfile, delimiter = '\t', quotechar = '|')
-
-	comment = reader.next()
-	headers = reader.next()
-
-	columns = {}
-	for header in headers:
-		columns[header] = []
-
-	for row in reader:
-		for header, value in zip(headers, row):
-			columns[header].append(value)
-
 # We read in the data
-#columns = parse.read_in('va_air_data.csv')
+columns = parse.read_in('va_air_data.csv')
 
 TimeAxis = []
 n = 1480
@@ -61,9 +44,7 @@ ax01.set_xlabel('Time of Day')
 ax01.set_ylabel('Ratio between aquired data and dangerous limits')
 
 """ Let's make one line for each day of the week, each line with a different color"""
-colors = plt.cm.jet(np.linspace(0,1,7))
 
-lines = []
 time = []
 pm10 = []
 pm25 = []
@@ -74,7 +55,7 @@ ax01.set_xticks(TimeAxis[0:48])
 
 ax01.xaxis.set_major_formatter(mdates.DateFormatter('%H:%M'))
 
-ax01.axhline(y = 30.0/75.0,color='r',label = 'Yearly average limit of NO2 levels')
+ax01.axhline(y = 30.0/75.0,color='r',lw = 4,label = 'Yearly average limit of NO2 levels')
 
 Plot_pm10, = ax01.plot_date(time, pm10, '-')
 Plot_no2, = ax01.plot_date(time, no2, '-',color='#b58900',lw = 3)
@@ -84,7 +65,7 @@ Plot_pm25, = ax01.plot_date(time, pm25, '-')
 # Format the x-axis for dates (label formatting, rotation)
 f0.autofmt_xdate(rotation=45)
 f0.tight_layout()
-backgrCol = '#5D5FA4' 
+backgrCol = '#073642' 
 xmax = 48
 x = 0 
 maxRad = float(max(columns['Rad'][1:n]))
@@ -105,7 +86,7 @@ def updateData(self):
     # pm25.append(float(columns['Dust2.5'][x])*(1.0/50.0))
     # pm10.append(float(columns['Dust10'][x])*(1.0/50.0))
     x = x + 1
-    radiation = 1.0 - float(columns['Rad'][x])*(1.0/maxRad) 
+    radiation = np.abs(0.7 - float(columns['Rad'][x])*1.0/maxRad) 
     ax01.axvspan(TimeAxis[x],TimeAxis[x+1],facecolor=backgrCol,alpha=radiation,lw = 0)
     
     ax01.legend([Plot_no2],[columns['Date'][x]])
