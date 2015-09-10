@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 #def avg_month_bar_plot(data):
 
 
-
 def get_monthly_avg(data):
 	# create twelve vectors
 	date_vector = data.pop('Date')
@@ -50,9 +49,21 @@ def get_monthly_avg(data):
 	return (data_monthly_avgs, data_monthly_stdevs)
 
 def get_month_name(month_number):
+	return {
+			'1': 'january',
+			'2': 'february',
+			'3': 'march',
+			'4': 'april',
+			'5': 'may',
+			'6': 'june',
+			'7': 'july',
+			'8': 'august',
+			'9': 'september',
+			'10': 'october',
+			'11': 'november',
+			'12': 'december'
+			}[str(month_number)]
 	
-
-
 
 def autolabel(rects):
 	max_height = 0
@@ -66,15 +77,15 @@ def autolabel(rects):
 				0.5*max_height, '%d'%int(height),
 				ha='center', va='bottom')
 
+		return
 
-def bar_chart_plotter(plot_data):
-	# plot data is a 
 
-	num_groups = len(plot_data)
-	means = tuple(np.mean(ages) for team, ages in 
-			team_age_data.iteritems())
-	std_devs = tuple(np.std(ages) for team, ages in 
-			team_age_data.iteritems())
+def bar_chart_plotter(plot_data, variable_name):
+
+	num_groups = 12 	# number of months
+	avgs, stdevs = get_monthly_avg(plot_data)
+	avg = avgs['NO']
+	stdev = stdevs['NO']
 
 	fig, ax = plt.subplots()
 	index = np.arange(num_groups)
@@ -82,18 +93,18 @@ def bar_chart_plotter(plot_data):
 	opacity = 0.4
 	error_config = {'ecolor': '0.3'}
 
-	rects = plt.bar(index, means, bar_width,
+	rects = plt.bar(index, avg, bar_width,
 			alpha=opacity,
 			color='b',
-			yerr=std_devs,
+			yerr=stdev,
 			error_kw=error_config)
 	autolabel(rects)
 
-	plt.xlabel('Team')
-	plt.ylabel('Age')
-	plt.title('Average age and standard deviation by team --- Women')
+	plt.xlabel('Month')
+	plt.ylabel('Average value')
+	plt.title('Average ' + variable_name + ' by month')
 	plt.xticks(index + 0.5*bar_width, 
-			tuple(team for team in team_age_data))
+			tuple(get_month_name(i) for i in range(1,13)))
 	plt.tight_layout()
 
 	return fig
