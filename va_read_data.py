@@ -1,4 +1,8 @@
 #!/bin/python
+# Made by Thorsteinn Hjortur Jonsson
+# Date: 13/09'15
+# This module contains csv readers, the first one does it the old fashioned way
+# The other one does not.
 import csv
 import numpy as np
 import pandas as pd
@@ -7,6 +11,9 @@ from dateutil.relativedelta import *
 import calendar
 import pdb
 
+# This is a basic csv reader
+# Future versions should render this obsolete
+# Currently it provides us time axis support
 def read_in(filename):
 
 	with open(filename, 'rb') as csvfile:
@@ -46,7 +53,7 @@ def mean_rng(filename, start,final, chemical):
     		TimeStr = []
     		# This list will contain the different date ranges according to the items in TimeStr
     		Measure_range = []
-		DateRange_mean.update({start.strftime('%B, %Y'): []})
+		DateRange_mean.update({start: []})
     		for i in np.arange(0,48):
         		# strings of measurement times
         		TimeStr.append(TimeRange[i].strftime('%H:%M'))
@@ -55,6 +62,6 @@ def mean_rng(filename, start,final, chemical):
         		# makes lists of the data during the Date ranges
         		DateRanges_data = pd.Series(air_data[chemical], index = Measure_range[i])
 			DateRanges_data.tolist()
-			DateRange_mean[start.strftime('%B, %Y')].append(DateRanges_data.mean())
+			DateRange_mean[start].append(DateRanges_data.mean())
     		start = start + relativedelta(months=+1)
     	return DateRange_mean
