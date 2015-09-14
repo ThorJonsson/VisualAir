@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1442212057 "Verkefni2_summary.tex" "Verkefni2_summary.pdf" "Verkefni2_summary" 1442212058
+["pdflatex"] 1442213016 "Verkefni2_summary.tex" "Verkefni2_summary.pdf" "Verkefni2_summary" 1442213016
   "/etc/texmf/web2c/texmf.cnf" 1441117381 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/thor/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk" 1442206767 49076 69c87b5c61220aaa7e2f3a2314511f72 ""
   "/home/thor/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk" 1442206765 14860 3c5217fa8f6d274e2cd44d05de63e5a7 ""
@@ -113,11 +113,11 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1392645748 31083 1dfd8bf685ce0009c40532fedf8a7c53 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1441819896 1038510 1e70615089e080c0196522f6a1c2a2e1 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1441818486 3822873 667c7f477c1c8633f87943277aef9035 ""
-  "Verkefni2_summary.aux" 1442212057 334 8ba77bd04f425afe789e764d06cfe4d6 ""
+  "Verkefni2_summary.aux" 1442213016 334 8ba77bd04f425afe789e764d06cfe4d6 ""
   "Verkefni2_summary.tex" 1442212040 7371 eb40f8b0833996a81a3e2413690be164 ""
-  "va_animate.py" 1442211781 6088 0134eb2377750b4ae215d5d6bdd375b4 ""
-  "va_read_data.py" 1442198670 2231 fdb97d510f52218f02d6d4641fff3200 ""
+  "va_animate.py" 1442212449 6228 6b61672aef0802aa6f3093a5fa4e582c ""
+  "va_read_data.py" 1442212386 2511 e10e1a9b030f01ca4b4ad94e6ec9932b ""
   (generated)
-  "Verkefni2_summary.pdf"
   "Verkefni2_summary.log"
   "Verkefni2_summary.aux"
+  "Verkefni2_summary.pdf"
